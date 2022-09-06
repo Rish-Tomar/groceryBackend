@@ -31,7 +31,10 @@ module.exports.addProduct = async (req,res)=>{
 module.exports.updateProductPrice =async (req,res)=>{
 
     //product id recieved as the params and new price in post body
-    const fetchedProduct = await Product.findOneAndUpdate({productId:req.params.product_id},{price:req.body.price});
+    console.log('params',req.params);
+    
+    const fetchedProduct = await Product.findOneAndUpdate({productId:req.params.product_id},{price:parseInt(req.body.price)});
+    console.log('result',fetchedProduct)
     if(fetchedProduct){
         return res.status(200).json({
             message:'price of the product Updated'
