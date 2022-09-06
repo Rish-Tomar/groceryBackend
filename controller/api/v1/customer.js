@@ -1,11 +1,6 @@
 const Customer =require('../../../models/customerDetails')
 
-module.exports.showAllDetails = async (req,res)=>{
 
-    console.log('this is showDetails consolelog')
-    const customers = Customer.find();
-    console.log('all details', customers)
-}
 
 module.exports.createCustomer = async (req,res)=>{
     console.log('values recieved as post requests are',req.body)
@@ -33,3 +28,35 @@ module.exports.createCustomer = async (req,res)=>{
 
 }
 
+module.exports.fetchCustomers = async (req,res)=>{
+    console.log('inside fetch customers');
+    const customerData =await Customer.find();
+
+    if(customerData){
+        return res.status(200).json({
+            message:'request successful',
+            data:customerData
+        })
+    }
+    return res.status(400).json({
+        message:'no customer Found'
+    })
+}
+
+module.exports.fetchSpecificCustomers = async (req,res)=>{
+    console.log(req.params.customer_id);
+    //search the customer
+    const customerData =await Customer.findOne({email:req.params.customer_id});
+    console.log('custmr data', customerData)
+    if(customerData){
+        return res.status(200).json({
+            message:'User found',
+            data:customerData
+        })
+    }
+    
+    return res.status(400).json({
+        message:'not found'
+    })
+    
+}
