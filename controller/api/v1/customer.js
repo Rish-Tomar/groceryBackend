@@ -43,20 +43,52 @@ module.exports.fetchCustomers = async (req,res)=>{
     })
 }
 
-module.exports.fetchSpecificCustomers = async (req,res)=>{
+module.exports.fetchSpecificCustomersOrders = async (req,res)=>{
     console.log(req.params.customer_id);
     //search the customer
-    const customerData =await Customer.findOne({email:req.params.customer_id});
+    const customerData =await Customer
+                                 .findOne({email:req.params.customer_id})
+                                 .populate('orders');
+
     console.log('custmr data', customerData)
     if(customerData){
         return res.status(200).json({
             message:'User found',
-            data:customerData
+            data:{
+                name:customerData.name,
+                email:customerData.email,
+                orders:customerData.orders
+            }
         })
     }
     
     return res.status(400).json({
-        message:'not found'
+        message:'No user found'
+    })
+    
+}
+
+module.exports.maxOrdersCustomer =async (req,res) =>{
+    console.log('no params as of now');
+
+    const result = await Customer.find().populate('orders');
+    const ress = result.map(element=>{
+        return(element.orders.length)
+    })
+
+    const maxinlist=Math.max(...ress)
+    const nmn=result.find((elem)=>{
+        return elem.orders.length==maxinlist
+    })
+    
+    console.log('here ',nmn)
+    return res.status(200).json({
+        message:'action performed',
+        data:{
+            name:nmn.name,
+            email:nmn.email,
+            orderCount:maxinlist
+        }
     })
     
 }

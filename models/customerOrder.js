@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const orderSchema = new mongoose.Schema({
     producctList:[
         {
-           type:mongoose.Schema.Types.ObjectId 
+           type:mongoose.Schema.Types.ObjectId,
+           ref:'Product' 
         }
     ],
     totalPrice:{
@@ -13,6 +14,10 @@ const orderSchema = new mongoose.Schema({
         paymentType:{
             type:String
         }
+    },
+    customer:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Customer'
     }
 })
 

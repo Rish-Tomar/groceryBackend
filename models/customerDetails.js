@@ -11,7 +11,13 @@ const customerSchema = new mongoose.Schema({
     },
     phone:{
         type:Number
-    }
+    },
+    orders:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'orderDetails'
+        }
+    ]
 })
 
 const Customer = mongoose.model('Customer',customerSchema)
