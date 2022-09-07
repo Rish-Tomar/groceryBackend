@@ -8,7 +8,11 @@ const app = express();
 
 /* MIDDLEWARES */    
     app.use(express.urlencoded({ extended: false}))  //important to use for reading data sent using POST(xxx-url-encoded) request
-
+    
+    //using view engine
+    app.set('view engine', 'ejs');
+    app.set('views', './views');
+    
     //using routes
     app.use('/',require('./routes'))
 

@@ -6,10 +6,11 @@ module.exports.orderCreate = async (req,res)=>{
     console.log('req.body',req.body);
     const createorder = await Orders.create({
         producctList:req.body.productItems,
-        totalPrice:45,
-        paymentInfo:'credit Card',
+        totalPrice:req.body.total,
+        paymentInfo:req.body.payment,
         customer: req.params._id
 
     })
 
 }
+

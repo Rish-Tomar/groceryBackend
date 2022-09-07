@@ -24,3 +24,5 @@ const orderSchema = new mongoose.Schema({
 const OrderDetails =mongoose.model('orderDetails',orderSchema)
 
 module.exports = OrderDetails
+
+

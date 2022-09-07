@@ -3,7 +3,8 @@ const Product = require('../../../models/product')
 module.exports.addProduct = async (req,res)=>{
     //recieving a post request
 
-    const existingproduct = await Product.findOne({productId:req.body.productId});
+    try{
+        const existingproduct = await Product.findOne({productId:req.body.productId});
 
     if(existingproduct){
         return res.status(400).json({
@@ -21,10 +22,16 @@ module.exports.addProduct = async (req,res)=>{
             }
         })
     }
+    }
+    catch(err){
+        if(err){
+            return res.status(500).json({
+                eerror_message:'error!! check your key values under body section and ensure you are sending POST request '
+            })
+        }
+    }
 
-    return res.status(500).json({
-        message:'New product was not created'
-    })
+   
 
 }
 

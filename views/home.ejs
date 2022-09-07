@@ -1,0 +1,48 @@
+<h1>
+    Homepage
+</h1>
+
+<section>
+    <h2>API's</h2>
+    <div>
+        <ul>
+            <li>
+                <h3>Api route to create new Customer</h3>
+                <h4>http://localhost:8000/api/customer/create-customer</h4>
+                <h5>this recieves the data as POST request and in url-encoded format</h4>
+                <h5>Key's that it accepts are in the order name,email,phone</h4>
+            </li>
+            <li>
+                <h3>Api route to create new Product</h3>
+                <h4>http://localhost:8000/api/product/create-product</h4>
+                <h5>this recieves the data as POST request and in url-encoded format</h5>
+                <h5>Key's that it accepts are in the order category,information,price,quantity,
+                    productId(three alphabets from categoryfollowed by three alphabets from information 
+                    and then 3 numericals)</h5>
+            </li>
+            <li>
+                <h3>API to update Product Price</h3>
+                <h4>http://localhost:8000/api/product/update-price/:product_id</h4>
+                <h5>here the product id is recieved as string params</h5>
+            </li>
+            <li>
+                <h3>API to fetch Customers list</h3>
+                <h4>http://localhost:8000/api/customer/fetch-customers</h4>
+            </li>
+            <li>
+                <h3>API to fetch specific Customer Orders list</h3>
+                <h4>http://localhost:8000/api/customer/fetch-customer/:customer_id</h4>
+                <h5>here we recieve email id of customer as customer_id</h5>
+                <h5></h5>
+            </li>
+            <li>
+                <h3>API to fetch customer Details with maximum Orders in an year</h3>
+                <h4>http://localhost:8000/api/customer/fetchMax</h4>
+                <h5>if there are no orders of a customer then it will return orderCount as 0</h5>
+                <h5>order id must be present inside orders list</h5>
+
+            </li>
+        </ul>
+        
+    </div>
+</section>
